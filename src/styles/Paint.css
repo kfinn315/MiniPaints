@@ -1,0 +1,39 @@
+.paint {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 10px;
+    width: 23vw;
+    max-width: 300px;
+    min-width: 150px
+}
+
+.paint>ul {
+    list-style: none;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+}
+
+.swatch {
+    width: 30px;
+    height: 30px;
+    border: 0.5px solid gray;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.color {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.delta {
+    font-size: smaller;
+}

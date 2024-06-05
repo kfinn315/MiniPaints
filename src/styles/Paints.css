@@ -1,0 +1,9 @@
+.paints {
+    display: flex;
+    flex-flow: wrap;
+    flex-grow: 1;
+    justify-content: center;
+    max-height: 80vh;
+    overflow-y: scroll;
+    align-content: flex-start;
+}

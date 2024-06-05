@@ -1,0 +1,10 @@
+.form-color {
+    width: fit-content;
+    border: solid 1px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.form-label {
+    margin-right: 10px;
+}
