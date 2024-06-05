@@ -1,5 +1,5 @@
 import PaintResponse from "../API/Models/PaintResponse";
-import PaintComponent from "./PaintComponent";
+import PaintComponent from "./Paint";
 import "../styles/Paints.css";
 
 export default function Paints(props: { items?: PaintResponse[] }) {

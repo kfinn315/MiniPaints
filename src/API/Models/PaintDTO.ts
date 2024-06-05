@@ -1,5 +1,5 @@
 
-export default interface Paint {
+export default interface PaintDTO {
     Id: number
     Hex: string
     Code: string

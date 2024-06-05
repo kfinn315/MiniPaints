@@ -1,6 +1,6 @@
-import Paint from './Paint';
+import PaintDTO from './PaintDTO';
 
 export default interface PaintResponse {
     delta: number
-    paint: Paint
+    paint: PaintDTO
 }

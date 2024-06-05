@@ -1,7 +1,7 @@
 import PaintResponse from "../API/Models/PaintResponse";
 import "../styles/Paint.css";
 
-export default function PaintComponent(props: { item: PaintResponse; }) {
+export default function Paint(props: { item: PaintResponse; }) {
     const { item } = props;
     const title = `${item.paint.Company} "${item.paint.Name}"`
 
