@@ -1,36 +1,37 @@
-import { FormEvent, useState } from 'react'
-import './App.css'
+import { useCallback, useState } from 'react'
+import './styles/App.css'
 import FormColor from './Components/FormColor';
 import Paints from './Components/Paints';
 import PaintResponse from './API/Models/PaintResponse';
-import PaintAPI from './API/PaintAPI';
+import { IPaintAPI } from './API/PaintAPI';
 import StatusMessage from './Components/StatusMessage';
 
-function App(props: { url: string }) {
-    const { url } = props;
-    const api = new PaintAPI(url);
-    const [items, setItems] = useState<PaintResponse[] | null>(null);
-    const [status, setStatus] = useState<string>(null);
+function App(props: { api: IPaintAPI }) {
+    const { api } = props;
+    const [items, setItems] = useState<PaintResponse[] | undefined>(undefined);
+    const [status, setStatus] = useState<string | undefined>(undefined);
     const startLoading = () => { setStatus("Loading...") }
+    const stopLoading = (message: string | undefined) => { setStatus(message) }
 
-    async function onSubmitHandler(event: FormEvent<HTMLFormElement>) {
-        const hexColor = (event.target[0] as HTMLInputElement).value
-        const deltaRange = (event.target[1] as HTMLInputElement).value
-        startLoading()
-        api.search(hexColor, deltaRange)
-            .then((paintResponses: PaintResponse[]) => {
-                setItems(paintResponses);
-                if (paintResponses.length === 0) {
-                    setStatus("No matching paints were found.");
-                } else {
-                    setStatus(`Found ${paintResponses.length} paints.`);
-                }
-            })
-            .catch((reason) => {
-                console.error(reason);
-                setStatus("Error: " + reason)
-            });
-    }
+    const onSubmitHandler = useCallback(
+        async function (hexColor: string, deltaRange: number) {
+            startLoading()
+            api.search(hexColor, deltaRange)
+                .then((paintResponses: PaintResponse[]) => {
+                    setItems(paintResponses);
+                    let message: string;
+                    if (paintResponses.length === 0) {
+                        message = "No matching paints were found.";
+                    } else {
+                        message = `Found ${paintResponses.length} paints.`;
+                    }
+                    stopLoading(message);
+                })
+                .catch((reason) => {
+                    console.error(reason);
+                    stopLoading("Error: " + reason)
+                });
+        }, [api]);
 
     return (
         <>

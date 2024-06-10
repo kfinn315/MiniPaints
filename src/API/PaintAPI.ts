@@ -1,9 +1,13 @@
 import PaintResponse from './Models/PaintResponse';
 
-export default class PaintAPI {
+export interface IPaintAPI {
+    search: (hexColor: string, deltaRange: number) => Promise<PaintResponse[]>;
+}
+
+export default class PaintAPI implements IPaintAPI {
     constructor(private readonly baseUrl: string) { }
 
-    search(hexColor: string, deltaRange: string): Promise<PaintResponse> {
+    search(hexColor: string, deltaRange: number): Promise<PaintResponse[]> {
         return fetch(this.baseUrl + "paint_search",
             {
                 method: "POST",

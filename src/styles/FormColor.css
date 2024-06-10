@@ -8,3 +8,11 @@
 .form-label {
     margin-right: 10px;
 }
+
+.color-block {
+    /* width: 100%; */
+}
+
+.swatch-clickable {
+    cursor: pointer;
+}
